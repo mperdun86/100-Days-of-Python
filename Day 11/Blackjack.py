@@ -10,6 +10,13 @@ def deal_cards(hand, num_of_cards):
     """Used to add cards to a hand."""
     hand.extend(random.choices(cards, k=num_of_cards))
 
+def deal_initial_cards():
+    """Used to add cards to a initial hand."""
+    user_hand.extend(random.choices(cards, k=1))
+    dealer_hand.extend(random.choices(cards, k=1))
+    user_hand.extend(random.choices(cards, k=1))
+    dealer_hand.extend(random.choices(cards, k=1))
+
 def calculate_score(hand):
     """Used for adjusting the value of an ace, and for checking for blackjack in initial deal."""
     score = sum(hand)
@@ -26,8 +33,7 @@ def initial_deal():
     user_hand.clear()
     dealer_hand.clear()
 
-    deal_cards(user_hand, 2)
-    deal_cards(dealer_hand, 2)
+    deal_initial_cards()
 
     user_score = calculate_score(user_hand)
     dealer_score = calculate_score(dealer_hand)
@@ -62,7 +68,7 @@ def user_round():
             continue
 
 def dealer_round():
-    """Allows the dealer to draw until bust or dealer score >=16"""
+    """Allows the dealer to draw until bust or dealer score >=17"""
     while True:
         dealer_score = calculate_score(dealer_hand)
         if dealer_score > 21:
