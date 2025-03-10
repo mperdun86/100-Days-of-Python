@@ -22,7 +22,7 @@ def caesar(original_text, shift_amount):
 
 while running:
     while True:
-        direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
+        direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower().strip()
         if direction in ["encode", "decode"]:
             break
         else:
@@ -43,7 +43,7 @@ while running:
     caesar(text, shift)
 
     while True:
-        continue_choice = input("Would you like to continue? Type 'yes' or 'no':\n").lower()
+        continue_choice = input("Would you like to continue? Type 'yes' or 'no':\n").lower().strip()
 
         if continue_choice == "no":
             print("Thank you for using the Caesar Cipher.")
