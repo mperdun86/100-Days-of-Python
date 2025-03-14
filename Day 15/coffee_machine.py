@@ -36,15 +36,19 @@ def check_if_available(drink_to_check):
         print("\nWe can make that!\n")
         payment(drink_to_check)
 
-def validate_float(prompt):
-    """Allows programmer to easily validate float inputs."""
+#figure out how to not allow float to begin with.
+def validate_coin_amount(user_input):
+    """Ensures coin amount input is a whole number and not negative."""
     while True:
         try:
-            value = float(input(prompt))
-            if value < 0:
+            user_input = float(input().strip())
+            if user_input < 0:
                 print("\nInvalid input. Please enter a non-negative number.\n")
                 continue
-            return value
+            if user_input != int(user_input):
+                print("\nInvalid input. Please enter a whole number.\n")
+                continue
+            return user_input
         except ValueError:
             print("Invalid input. Please enter a number.")
 
@@ -54,13 +58,13 @@ def payment(drink_to_purchase):
     price = MENU[drink_to_purchase]['cost']
     print(f"It will be {price:.2f} please.")
 
-    quarters = validate_float("How many quarters?: ")
+    quarters = validate_coin_amount("How many quarters?: ")
     money_added += 0.25 * quarters
-    dimes = validate_float("How many dimes?: ")
+    dimes = validate_coin_amount("How many dimes?: ")
     money_added += 0.10 * dimes
-    nickels = validate_float("How many nickels?: ")
+    nickels = validate_coin_amount("How many nickels?: ")
     money_added += 0.05 * nickels
-    pennies = validate_float("How many pennies?: ")
+    pennies = validate_coin_amount("How many pennies?: ")
     money_added += 0.01 * pennies
 
     money_added = round(money_added, 2)
